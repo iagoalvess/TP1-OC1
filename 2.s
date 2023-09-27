@@ -2,9 +2,7 @@
 vetor: .word 200, 190, 340, 100 # exemplo
 
 ##### START MODIFIQUE AQUI START #####
-#
-# Este espaço é para você definir as suas constantes e vetores auxiliares.
-#
+
 ##### END MODIFIQUE AQUI END #####
 
 .text

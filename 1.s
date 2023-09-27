@@ -19,24 +19,24 @@ contador:
     addi x5, x0, 0 # Inicializa o contador de pares
     addi x6, x0, 0 # Inicializa o contador de ímpares
 
-loop:
-    beq t3, x0, end_loop # Se t3 (tamanho do vetor) for 0, termina o loop
+loop_contador:
+    beq t3, x0, finaliza_loop # Se t3 (tamanho do vetor) for 0, termina o loop
     lw x4, 0(t2) # Carrega o valor do vetor na posição t2
     andi x8, x4, 1 # Verifica se o número é ímpar
-    beqz x8, even # Se o número for par, vai para 'even'
+    beqz x8, par # Se o número for par, vai para 'par'
 
     addi x6, x6, 1 # Incrementa o contador de ímpares
-    j next # Vai para 'next'
+    j proximo_elemento # Vai para 'proximo_elemento'
     
-even:
+par:
     addi x5, x5, 1 # Incrementa o contador de pares
 
-next:
+proximo_elemento:
     addi t2, t2, 4 # Incrementa o endereço do vetor
     addi t3, t3, -1 # Decrementa o tamanho do vetor
-    j loop # Volta para 'loop'
+    j loop_contador # Volta para 'loop'
 
-end_loop:
+finaliza_loop:
     mv a0, x5 # Move o contador de pares para r0 (valor de retorno)
     mv a1, x6 # Move o contador de ímpares para r1 (valor de retorno)
     ret

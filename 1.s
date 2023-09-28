@@ -37,8 +37,8 @@ proximo_elemento:
     j loop_contador
 
 finaliza_loop:
-    mv a0, x5 # Move o contador de pares para r0
-    mv a1, x6 # Move o contador de ímpares para r1
+    mv x10, x5 # Move o contador de pares para r0
+    mv x11, x6 # Move o contador de ímpares para r1
     ret
 
 ##### END MODIFIQUE AQUI END #####

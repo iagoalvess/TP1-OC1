@@ -18,22 +18,28 @@ main:
     # Carrega os valores/endereços
     la a0, vetor
     li a1, 3 # Tamanho do vetor
+
+    lw t0, contador_sal_limite
     lw t1, reajuste
     lw t2, aux_reajuste
     lw t3, salario_limite
 
-    mv t6, ra # Armazena em t6 o endereço da primeira chamada de ra
     jal ra, aplica_reajuste
-    mv ra, t6 # ra passa a ser o endereço armazenado anteriormente
+    
+    lw ra, 0(sp)  # Restaura o endereço de retorno da pilha
+    addi sp, sp, 4 # Incrementa a pilha para liberar o espaço usado
+
+    addi ra, ra, 4 # Configura ra para apontar para a próxima instrução
+
     jr ra # Retorno
 ##### END MODIFIQUE AQUI END #####
 
 aplica_reajuste:
-    # Argumentos:
     # a0: Endereço base do vetor de salários
     # a1: Tamanho do vetor
+    # t1: Valor de reajuste
     # t3: Salario limite
-    # t1: Valor de reajuste 
+    # t4: Salario analisado 
     ##### START MODIFIQUE AQUI START #####
     # Verifica se ainda há salários para processar
     beq a1, x0, reajuste_aplicado
@@ -58,7 +64,7 @@ aplica_reajuste:
 
 salario_acima_limite:
     # Incrementa o contador de salários acima do limite
-    addi contador_sal_limite, contador_sal_limite, 1
+    addi t0, t0, 1
 
     j aplica_reajuste
 

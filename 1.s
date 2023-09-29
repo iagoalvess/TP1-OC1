@@ -2,7 +2,7 @@
 vetor: .word 2, 4, 7, 10, 13, 16, 21, 24
 
 ##### START MODIFIQUE AQUI START #####
-tamanho: .word 8
+tamanho_vetor: .word 8
 ##### END MODIFIQUE AQUI END #####
 
 .text
@@ -14,7 +14,7 @@ beq x14, x6, FIM # Verifica # de ímpares
 ##### START MODIFIQUE AQUI START #####
 contador:
     la t2, vetor
-    lw t3, tamanho
+    lw t3, tamanho_vetor
 
     addi x5, x0, 0 # Contador de pares = 0
     addi x6, x0, 0 # Contador de ímpares = 0

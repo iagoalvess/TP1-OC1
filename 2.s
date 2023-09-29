@@ -6,6 +6,7 @@ reajuste: .word 50 # 50 pois depois dividiremos por 100 e evitaremos uso de pont
 salario_limite: .word 1000 # Modificavel (Indica o salario considerado limite apos reajuste)
 contador_sal_limite: .word 0 # Numero de salarios que superam o limite especificado
 aux_reajuste: .word 100 # Auxiliar para reajuste, me permite não utilizar ponto flutuante (50%)
+tamanho_vetor: .word 3
 ##### END MODIFIQUE AQUI END #####
 
 .text
@@ -17,8 +18,8 @@ main:
 ##### START MODIFIQUE AQUI START #####
     # Carrega os valores/endereços
     la a0, vetor
-    li a1, 3 # Tamanho do vetor
 
+    lw a1, tamanho_vetor # Tamanho do vetor
     lw t0, contador_sal_limite
     lw t1, reajuste
     lw t2, aux_reajuste

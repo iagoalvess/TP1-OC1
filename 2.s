@@ -2,28 +2,28 @@
 vetor: .word 1500, 2200, 1800 # exemplo
 
 ##### START MODIFIQUE AQUI START #####
-reajuste: .word 50 # 50 pois depois dividiremos por 100 e evitaremos uso de ponto flutuante
+reajuste: .word 50 # Reajuste de 50%
 salario_limite: .word 1000 # Modificavel (Indica o salario considerado limite apos reajuste)
 contador_sal_limite: .word 0 # Numero de salarios que superam o limite especificado
-aux_reajuste: .word 100 # Auxiliar para reajuste, me permite não utilizar ponto flutuante (50%)
+aux_reajuste: .word 100 # Auxiliar para reajuste
 tamanho_vetor: .word 3
 ##### END MODIFIQUE AQUI END #####
 
 .text
 jal ra, main # utilizado para correção (considerando um limiar de 200 para o vetor de exemplo após a aplicação do reajuste.
-addi x14, x0, 1
-beq x14, x5, FIM # Verifica a quantidade de salários acima do limiar.
+addi a4, x0, 1
+beq a4, t0, FIM # Verifica a quantidade de salários acima do limiar.
 
 main:
 ##### START MODIFIQUE AQUI START #####
     # Carrega os valores/endereços
     la a0, vetor
 
-    lw a1, tamanho_vetor # Tamanho do vetor
+    lw a1, tamanho_vetor
     lw t0, contador_sal_limite
     lw t1, reajuste
     lw t2, aux_reajuste
-    lw t3, salario_limite
+    lw a2, salario_limite
 
     jal ra, aplica_reajuste
     
@@ -39,9 +39,10 @@ aplica_reajuste:
     # a0: Endereço base do vetor de salários
     # a1: Tamanho do vetor
     # t1: Valor de reajuste
-    # t3: Salario limite
+    # a2: Salario limite
     # t4: Salario analisado 
     ##### START MODIFIQUE AQUI START #####
+
     # Verifica se ainda há salários para processar
     beq a1, x0, reajuste_aplicado
 
@@ -59,7 +60,7 @@ aplica_reajuste:
     addi a1, a1, -1
 
     # Compara o salário reajustado com o limite
-    bge t4, t3, salario_acima_limite
+    bge t4, a2, salario_acima_limite
 
     j aplica_reajuste
 

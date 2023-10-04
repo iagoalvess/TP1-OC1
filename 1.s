@@ -8,8 +8,8 @@ tamanho_vetor: .word 8
 .text
 jal x1, contador
 addi x14, x0, 5 # utilizado para correção
-beq x14, x5, FIM # Verifica # de pares
-beq x14, x6, FIM # Verifica # de ímpares
+beq x14, x10, FIM # Verifica # de pares
+beq x14, x11, FIM # Verifica # de ímpares
 
 ##### START MODIFIQUE AQUI START #####
 contador:
